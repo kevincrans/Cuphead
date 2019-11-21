@@ -11,7 +11,7 @@ public class InputHandler : MonoBehaviour {
 
     //Player speed
     public float normalSpeed = 5f;
-    public float runningSpeed = 7f;
+    public float dashSpeed = 10f;
 
     //Variables to update our character in the fixed update instead of the update function
     float horizontalMove = 0f;
@@ -19,12 +19,14 @@ public class InputHandler : MonoBehaviour {
     public bool jumping = false;
     public bool inAir = false;
     public bool walking = false;
-    public bool running = false;
+    public bool dashing = false;
     public bool crouching = false;
     public bool pushing = false;
-    private GameObject pushedObject;
+    [SerializeField] private int dashBoostIndex = 10;
     private int jumpCooldown = 0;
     private bool dieing = false;
+
+    private int dashedIndex = 0;
 
     //Implement the animator for player animations
     private Animator animator;
@@ -39,42 +41,25 @@ public class InputHandler : MonoBehaviour {
     void Update() {
         if (Input.GetKey(KeyCode.LeftControl)) { crouching = true; } else { crouching = false; }
 
-        if (!crouching) crouching = controller.getCrouching();
-        if (pushing) {
-            if (pushedObject.GetComponent<Rigidbody2D>().mass > 10) pushing = false; else crouching = true;
-        } else {
-            if (pushedObject != null)
-                if (Vector3.Distance(pushedObject.transform.position, transform.position) <= 9.82f) {
-                    pushing = true;
-                }
+        if (!crouching) 
+            crouching = controller.getCrouching();
+
+        if(Input.GetButton("Jump") && jumpCooldown >= 10) {
+            jumping = true;
+            jumpCooldown = 0;
+            dashedIndex = 0;
         }
 
         float speed = normalSpeed;
-        if (Input.GetKey(KeyCode.LeftShift) && !crouching) speed = runningSpeed;
-        if (pushing) {
-            speed = normalSpeed * 1.8f;
+        if(Input.GetKey(KeyCode.LeftShift) && !controller.m_Grounded && dashedIndex < dashBoostIndex) {
+            speed = dashSpeed;
+            dashedIndex++;
         }
 
         horizontalMove = Input.GetAxisRaw("Horizontal") * speed;
 
-        if (horizontalMove != 0) {
-            if (speed < runningSpeed) { walking = true; running = false; } else { running = true; walking = true; }
-        } else {
-            running = false;
+        if (horizontalMove == 0) {
             walking = false;
-        }
-
-        if (Input.GetButton("Jump") && jumpCooldown >= 10 && (!crouching || pushing)) {
-            jumping = true;
-            jumpCooldown = 0;
-        }
-    }
-
-    //If player is pushing a "moveable"
-    void OnCollisionEnter2D(Collision2D col) {
-        if (col.gameObject.tag == "Moveable") {
-            pushing = true;
-            pushedObject = col.gameObject;
         }
     }
 
