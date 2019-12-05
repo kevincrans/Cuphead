@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8197405117348650131
+--- !u!1 &2743527554735019503
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8197405117348650134}
-  - component: {fileID: 8197405117348650133}
-  - component: {fileID: 8197405117348650132}
-  - component: {fileID: 8197405117348650136}
-  - component: {fileID: 8197405117348650135}
+  - component: {fileID: 2743527554735019508}
+  - component: {fileID: 2743527554735019499}
+  - component: {fileID: 2743527554735019498}
+  - component: {fileID: 2743527554735019497}
+  - component: {fileID: 2743527554735019496}
   m_Layer: 0
   m_Name: Flying_Platform
   m_TagString: Untagged
@@ -20,27 +20,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8197405117348650134
+--- !u!4 &2743527554735019508
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8197405117348650131}
+  m_GameObject: {fileID: 2743527554735019503}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.849, y: 0.27, z: -7.9454775}
-  m_LocalScale: {x: 35.365147, y: 9.7371, z: 9.7371}
+  m_LocalPosition: {x: 11.5, y: 2.6, z: -7.9454775}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8197405117348650133
+--- !u!212 &2743527554735019499
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8197405117348650131}
+  m_GameObject: {fileID: 2743527554735019503}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 4429d7d4a9a391b419a87e16c8a52003, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -83,40 +83,40 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8197405117348650132
+--- !u!61 &2743527554735019498
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8197405117348650131}
+  m_GameObject: {fileID: 2743527554735019503}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 9b7921c866f12fe418fe9eea0b59fb30, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0014526248, y: -0.011132162}
+  m_Offset: {x: 0.042604923, y: -0.21123934}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 3.33, y: 2.06}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.13966337, y: 0.1261195}
+  m_Size: {x: 2.9243536, y: 1.4084754}
   m_EdgeRadius: 0
---- !u!50 &8197405117348650136
+--- !u!50 &2743527554735019497
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8197405117348650131}
+  m_GameObject: {fileID: 2743527554735019503}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -130,13 +130,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 5
---- !u!231 &8197405117348650135
+--- !u!231 &2743527554735019496
 SpringJoint2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8197405117348650131}
+  m_GameObject: {fileID: 2743527554735019503}
   m_Enabled: 1
   serializedVersion: 4
   m_EnableCollision: 1
@@ -145,7 +145,7 @@ SpringJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 0
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 5.849, y: 0.27}
+  m_ConnectedAnchor: {x: 11.5, y: 2.6}
   m_AutoConfigureDistance: 0
   m_Distance: 0.005
   m_DampingRatio: 0

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class InputHandler : MonoBehaviour {
+public class PlayerMoveHandler : MonoBehaviour {
 
     //Implement the character controller
+    private InputHandler controls;
     public CharacterController2D controller;
     AudioSource audioData;
 
@@ -22,6 +23,8 @@ public class InputHandler : MonoBehaviour {
     public bool dashing = false;
     public bool crouching = false;
     public bool pushing = false;
+
+    private bool dashButtonDown = false;
     [SerializeField] private float dashCooldown = 0.1f;
     [SerializeField] private int dashBoostIndex = 10;
     private int jumpCooldown = 0;
@@ -33,6 +36,16 @@ public class InputHandler : MonoBehaviour {
     //Implement the animator for player animations
     private Animator animator;
 
+    private void Awake() {
+        controls = new InputHandler();
+        
+        controls.Player.Movement.performed += ctx => dashButtonDown = true;
+    }
+
+    private void OnEnable() {
+        controls.Player.Enable();
+    }
+
     // Start is called before the first frame update
     void Start() {
         animator = GetComponent<Animator>();
@@ -41,7 +54,7 @@ public class InputHandler : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (Input.GetKey(KeyCode.LeftControl)) { crouching = true; } else { crouching = false; }
+        if (dashButtonDown) { crouching = true; } else { crouching = false; }
 
         if (!crouching) 
             crouching = controller.getCrouching();
@@ -60,7 +73,7 @@ public class InputHandler : MonoBehaviour {
         }
 
         float speed = normalSpeed;
-        if(Input.GetKeyDown(KeyCode.LeftShift) && !controller.m_Grounded && dashCount >= dashCooldown) {
+        if(dashButtonDown && !controller.m_Grounded && dashCount >= dashCooldown) {
             StartCoroutine("DoDashing");
         }
 
@@ -72,6 +85,8 @@ public class InputHandler : MonoBehaviour {
         if (horizontalMove == 0) {
             walking = false;
         }
+
+        dashButtonDown = false;
     }
 
     private IEnumerator DoDashing() {
@@ -86,7 +101,7 @@ public class InputHandler : MonoBehaviour {
     }
 
     //Move the player via the charactercontroller
-    void FixedUpdate() {
+    private void FixedUpdate() {
 
         if (dieing) {
             controller.Move(0, false, false);
