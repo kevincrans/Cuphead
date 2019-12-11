@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerShootingHandler : MonoBehaviour {
     [SerializeField] private Gun gun;
 
-    public void GunShoot() {
-        gun.Shoot();
+    public void GunShoot(bool lookingRight) {
+        gun.Shoot(lookingRight);
     }
 }

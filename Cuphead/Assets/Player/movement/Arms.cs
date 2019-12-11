@@ -15,7 +15,7 @@ public class Arms : MonoBehaviour {
         controls = new InputHandler();
 
         //TODO change shooting to some form of updating version
-        controls.Player.Shoot.performed += ctx => StartShooting();
+        controls.Player.Shoot.started += ctx => StartShooting();
         controls.Player.Aim.performed += ctx => SetTarget(controls.Player.Aim.ReadValue<Vector2>());
     }
 
@@ -38,25 +38,9 @@ public class Arms : MonoBehaviour {
         controls.Player.Enable();
     }
 
-    private void Start() {
-        gameObject.SetActive(false);
-    }
-
     private void StartShooting() {
-        print("Test");
+        playerShooting.GunShoot(this.transform.parent.GetComponent<CharacterController2D>().m_FacingRight);
         lastShotIndex = 10;
-        gameObject.SetActive(true);
-        StartCoroutine("StopShooting");
-    }
-
-    private IEnumerator StopShooting() {
-        while(lastShotIndex > 0) {
-            lastShotIndex--;
-            yield return null;
-        }
-
-        gameObject.SetActive(false);
-        StopCoroutine("StopShooting");
     }
 
     // Update is called once per frame
@@ -70,9 +54,9 @@ public class Arms : MonoBehaviour {
         // Get Angle in Degrees
         float AngleDeg = (180 / Mathf.PI) * AngleRad;
 
-        AngleDeg /= 60;
-        AngleDeg = Mathf.Floor(AngleDeg);
-        AngleDeg *= 60;
+        // /= 60;
+        //AngleDeg = Mathf.Floor(AngleDeg);
+        //AngleDeg *= 60;
 
         // Rotate Object
         if(this.transform.parent.GetComponent<CharacterController2D>().m_FacingRight)

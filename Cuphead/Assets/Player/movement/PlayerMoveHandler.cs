@@ -84,6 +84,8 @@ public class PlayerMoveHandler : MonoBehaviour {
 
         if (horizontalMove == 0) {
             walking = false;
+        } else {
+            walking = true;
         }
 
         dashButtonDown = false;
@@ -112,7 +114,7 @@ public class PlayerMoveHandler : MonoBehaviour {
 
         if (!controller.m_Grounded) inAir = true; else inAir = false;
 
-        //animator.SetBool("walking", walking);
+        animator.SetBool("walking", walking);
         //animator.SetBool("running", running);
         //animator.SetBool("jumping", inAir);
         //animator.SetBool("crouching", crouching);
