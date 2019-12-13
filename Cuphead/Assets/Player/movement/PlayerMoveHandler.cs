@@ -116,8 +116,8 @@ public class PlayerMoveHandler : MonoBehaviour {
 
         animator.SetBool("walking", walking);
         //animator.SetBool("running", running);
-        //animator.SetBool("jumping", inAir);
-        //animator.SetBool("crouching", crouching);
+        animator.SetBool("jump", inAir);
+        animator.SetBool("crouch", crouching);
 
         jumping = false;
 
